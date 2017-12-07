@@ -1,4 +1,4 @@
-package com.niran.reference.api.domain;
+package com.reference.api.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

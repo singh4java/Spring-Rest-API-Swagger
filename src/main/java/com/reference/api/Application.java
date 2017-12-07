@@ -1,4 +1,4 @@
-package com.niran.reference.api;
+package com.reference.api;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
@@ -24,10 +24,19 @@ public class Application {
    @Bean
    public Docket personApi() {
        return new Docket(DocumentationType.SWAGGER_2)
-               .groupName("spring-swagger-api")
+               .groupName("spring-swagger-api-1")
                .apiInfo(apiInfo())
                .select()
                .paths(regex ("/people.*"))
+               .build();
+   }
+   @Bean
+   public Docket employeeApi() {
+       return new Docket(DocumentationType.SWAGGER_2)
+               .groupName("spring-swagger-api-2")
+               .apiInfo(apiInfo())
+               .select()
+               .paths(regex ("/employee.*"))
                .build();
    }
     

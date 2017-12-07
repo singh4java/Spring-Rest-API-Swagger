@@ -1,4 +1,4 @@
-package com.niran.reference.api.controller;
+package com.reference.api.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.niran.reference.api.domain.Person;
-import com.niran.reference.api.domain.PersonRepository;
+import com.reference.api.domain.Employee;
+import com.reference.api.domain.EmployeeRepository;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -20,86 +20,86 @@ import io.swagger.annotations.ApiResponses;
 
 
 @RestController
-@RequestMapping("/people")
-public class PersonController {
+@RequestMapping("/employee")
+public class EmployeeController {
 
 	@Autowired
-	private PersonRepository personRepository;
+	private EmployeeRepository employeeRepository;
 
 	/**
-	 * Fetch a list of people
-	 * @return a list of people
+	 * Fetch a list of Employee
+	 * @return a list of Employee
 	 */
     @RequestMapping(path="/all", method = RequestMethod.GET, produces = "application/json")
-    @ApiOperation(value = "Fetch all people")
+    @ApiOperation(value = "Fetch all Employee")
     @ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Success", response = Person.class),
+            @ApiResponse(code = 200, message = "Success", response = Employee.class),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Server Error")}) 
-    public List<Person> people() {
-    	List<Person> people = (List<Person>) personRepository.findAll();
+    public List<Employee> employee() {
+    	List<Employee> employee = (List<Employee>) employeeRepository.findAll();
     	
-    	return people;
+    	return employee;
     }
     
     
     /**
-     * Finds a person by <code>id</code>
+     * Finds a employee by <code>id</code>
      * 
-     * @param id person's id
+     * @param id employee id
      * 
-     * @return the {@link Person} object
+     * @return the {@link Employee} object
      */
     @RequestMapping(path = "/{id}", 
     				method = RequestMethod.GET)
-    @ApiOperation(value = "Fetch a person")
-    public Person person(@PathVariable Long id) {
-    	return personRepository.findOne(id);
+    @ApiOperation(value = "Fetch a employee")
+    public Employee employee(@PathVariable Long id) {
+    	return employeeRepository.findOne(id);
     }
     
     
     /**
-     * Adds a person
+     * Adds a employee
      * 
-     * @param person
+     * @param employee
      * @return
      */
     @RequestMapping(path = "/add",
     				method = RequestMethod.POST,
     				 consumes =  MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Add a person")
-    public Person add(@RequestBody Person person) {
-    	Person savedPerson =  personRepository.save(person);
+    @ApiOperation(value = "Add a employee")
+    public Employee add(@RequestBody Employee employee) {
+    	Employee savedEmployee =  employeeRepository.save(employee);
     	
-    	return savedPerson;
+    	return savedEmployee;
     }
 
     
     /**
-     * Updates the person
+     * Updates the employee
      * 
-     * @param person
+     * @param employee
      * @return
      */
     @RequestMapping(path = "/update",
     				method = RequestMethod.PUT)
-    @ApiOperation(value = "Update a person")
-    public Person update(@RequestBody Person person) {
-    	Person savedPerson =  personRepository.save(person);
+    @ApiOperation(value = "Update a employee")
+    public Employee update(@RequestBody Employee employee) {
+    	Employee savedEmployee =  employeeRepository.save(employee);
     	
-    	return savedPerson;
+    	return savedEmployee;
     }
     
     
     /**
-     * Deletes person identified with <code>id</code>
+     * Deletes employee identified with <code>id</code>
      * @param id
      */
     @RequestMapping(path = "/{id}", 
 			method = RequestMethod.DELETE)
-    @ApiOperation(value = "Delete a person")
+    @ApiOperation(value = "Delete a employee")
     public void delete(@PathVariable Long id) {
-    	personRepository.delete(id);
+    	employeeRepository.delete(id);
     }
 
 }

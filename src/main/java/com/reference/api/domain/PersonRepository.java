@@ -1,4 +1,4 @@
-package com.niran.reference.api.domain;
+package com.reference.api.domain;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
